@@ -23,6 +23,12 @@ jobs:
         NODE_ENV: production
     - name: Publish
       uses: cloudflare/wrangler-action@v3
+      env:
+        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        SECRET_SLACK_WEBHOOK_URL: ${{secrets.SECRET_SLACK_WEBHOOK_URL}}
+        SECRET_TELEGRAM_API_TOKEN: ${{secrets.SECRET_TELEGRAM_API_TOKEN}}
+        SECRET_TELEGRAM_CHAT_ID: ${{secrets.SECRET_TELEGRAM_CHAT_ID}}
+        SECRET_DISCORD_WEBHOOK_URL: ${{secrets.SECRET_DISCORD_WEBHOOK_URL}}
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         preCommands: |
@@ -44,9 +50,3 @@ jobs:
           SECRET_TELEGRAM_CHAT_ID
           SECRET_DISCORD_WEBHOOK_URL
         environment: production
-      env:
-        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        SECRET_SLACK_WEBHOOK_URL: ${{secrets.SECRET_SLACK_WEBHOOK_URL}}
-        SECRET_TELEGRAM_API_TOKEN: ${{secrets.SECRET_TELEGRAM_API_TOKEN}}
-        SECRET_TELEGRAM_CHAT_ID: ${{secrets.SECRET_TELEGRAM_CHAT_ID}}
-        SECRET_DISCORD_WEBHOOK_URL: ${{secrets.SECRET_DISCORD_WEBHOOK_URL}}
